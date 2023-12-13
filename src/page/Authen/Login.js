@@ -4,7 +4,7 @@ import "./Login.css"; // Import your custom CSS file
 import { addTokenToAxios, loginApi } from "../../service/authen";
 
 export const Login = () => {
-   // Access the navigate function for navigation
+  const navigate = useNavigate(); 
 
   const [loginData, setLoginData] = useState({
     username: "",

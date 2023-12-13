@@ -5,6 +5,7 @@ import Header from "../../components/AdminComponent/Header";
 import Sidebar from "../../components/AdminComponent/Sidebar";
 import Product from "../../components/AdminComponent/Product";
 import User from "../../components/AdminComponent/User";
+import Category from "../../components/AdminComponent/Category";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const Admin = () => {
         <Routes>
           <Route path="/products" element={<Product />} />
           <Route path="/users" element={<User />} />
+          <Route path="/categorys" element={<Category />} />
         </Routes>
       </div>
     </div>

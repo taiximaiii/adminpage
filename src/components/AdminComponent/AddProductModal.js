@@ -1,14 +1,29 @@
 // AddProductModal.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Form, Input, Select, Upload, Button, message } from 'antd';
 import { addProductApi } from '../../service/product';
 import { UploadOutlined } from '@ant-design/icons';
+import { getAllCategoryApi } from '../../service/category';
 
 const { Option } = Select;
 
 const AddProductModal = ({ visible, onCancel, fetchProducts }) => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const categoryData = await getAllCategoryApi();
+        setCategories(categoryData);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleAdd = async () => {
     try {
@@ -59,9 +74,11 @@ const AddProductModal = ({ visible, onCancel, fetchProducts }) => {
         </Form.Item>
         <Form.Item label="Category" name="categoryId" rules={[{ required: true, message: 'Please select the category' }]}>
           <Select placeholder="Select Category">
-            <Option value="1">Man</Option>
-            <Option value="2">Women</Option>
-            <Option value="3">Kid</Option>
+            {categories.map((category) => (
+              <Option key={category.id} value={category.id}>
+                {category.type}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
         <Form.Item label="Sizes" name="sizeIds" rules={[{ required: true, message: 'Please select the sizes' }]}>
@@ -72,12 +89,7 @@ const AddProductModal = ({ visible, onCancel, fetchProducts }) => {
           </Select>
         </Form.Item>
         <Form.Item label="File" name="file" rules={[{ required: true, message: 'Please upload an image' }]}>
-          <Upload
-            fileList={fileList}
-            beforeUpload={() => false}
-            onChange={onFileChange}
-            listType="picture"
-          >
+          <Upload fileList={fileList} beforeUpload={() => false} onChange={onFileChange} listType="picture">
             <Button icon={<UploadOutlined />}>Click to upload</Button>
           </Upload>
         </Form.Item>

@@ -1,14 +1,31 @@
 import axios from "axios";
 import { productUrl } from "./api";
-export const getAllProductApi = async () => {
-    try{
-    const response = await axios.get(productUrl.concat("/all"));
-        const data = await response.data;
-        return data;
-    }catch (error) {
-        console.error('Error fetching:', error);
-      }
-}
+
+
+export const getAllProductApi = async (options = {}) => {
+  try {
+    const { search, minPrice, maxPrice, ...otherOptions } = options;
+    const searchQuery = search ? `search=${encodeURIComponent(search)}` : '';
+    const minPriceQuery = minPrice !== undefined ? `minPrice=${minPrice}` : '';
+    const maxPriceQuery = maxPrice !== undefined ? `maxPrice=${maxPrice}` : '';
+
+    // Combine all query parameters
+    const queryString = [searchQuery, minPriceQuery, maxPriceQuery].filter(Boolean).join('&');
+
+    const response = await axios.get(`${productUrl}/all${queryString ? `?${queryString}` : ''}`, otherOptions);
+
+    if (response.status !== 200) {
+      throw new Error(`Failed to fetch products. Status: ${response.status}`);
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw new Error('Failed to fetch products.');
+  }
+};
+
+
 export const deleteProductApi = async (productId) => {
     try {
       const response = await axios.delete(`${productUrl}/${productId}`);

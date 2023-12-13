@@ -1,6 +1,6 @@
 // Sidebar.js
 import React, { useState, useEffect } from 'react';
-import { FaShoppingCart, FaArchive, FaUser } from 'react-icons/fa';
+import { FaShoppingCart, FaArchive, FaUser,FaList } from 'react-icons/fa';
 import './Sidebar.css';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -33,6 +33,11 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <li className={`sidebar-list-item ${activeLink === '/admin/users' ? 'active' : ''}`}>
           <Link to="/admin/users">
             <FaUser className='icon' /> Users
+          </Link>
+        </li>
+        <li className={`sidebar-list-item ${activeLink === '/admin/categorys' ? 'active' : ''}`}>
+          <Link to="/admin/categorys">
+            <FaList className='icon' /> Categorys
           </Link>
         </li>
       </ul>

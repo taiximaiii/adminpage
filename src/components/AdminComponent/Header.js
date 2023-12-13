@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {FaUserCircle, FaSearch, FaBars } from 'react-icons/fa';
+import {FaUserCircle, FaBomb, FaBars } from 'react-icons/fa';
 import './Header.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ function Header({ OpenSidebar }) {
         <FaBars className='icon' onClick={OpenSidebar} />
       </div>
       <div className='header-left'>
-        <FaSearch className='icon' />
+        <FaBomb className='icon' />
       </div>
       <div className='header-right'>
         <div className='dropdown'>

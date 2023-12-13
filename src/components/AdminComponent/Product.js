@@ -23,16 +23,37 @@ const Product = () => {
     price: '',
     description: '',
   });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
 
   const fetchProducts = async () => {
     try {
-      const data = await getAllProductApi();
+      const data = await getAllProductApi(); 
       setProducts(data);
     } catch (error) {
       console.error('Error fetching products:', error);
     }
   };
-
+  const handleSearch = async () => {
+    try {
+      const data = await getAllProductApi({
+        search: searchTerm,
+        minPrice: minPrice, 
+        maxPrice: maxPrice, 
+      });
+      setProducts(data);
+    } catch (error) {
+      console.error('Error searching products:', error);
+    }
+  };
+  const handleClear = () => {
+    setSearchTerm('');
+    setMinPrice('');
+    setMaxPrice('');
+    fetchProducts(); 
+  };
+  
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -181,6 +202,30 @@ const Product = () => {
     <div>
       <Button className="btn-add" type="primary" onClick={() => setAddModalVisible(true)}>
         Add Product
+      </Button>
+      <Input
+        placeholder="Search by title"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{ marginLeft: '10px', width: '200px' }}
+      />
+       <Input
+        placeholder="Min Price"
+        value={minPrice}
+        onChange={(e) => setMinPrice(e.target.value)}
+        style={{ marginLeft: '10px', width: '100px' }}
+      />
+      <Input
+        placeholder="Max Price"
+        value={maxPrice}
+        onChange={(e) => setMaxPrice(e.target.value)}
+        style={{ marginLeft: '10px', width: '100px' }}
+      />
+       <Button onClick={handleSearch} style={{ marginLeft: '10px', marginRight: '10px' }}>
+        Search
+      </Button>
+      <Button onClick={handleClear} style={{ marginRight: '10px' }}>
+        Clear
       </Button>
       <Table columns={columns} dataSource={products} pagination={pagination} onChange={handleTableChange} />
 
