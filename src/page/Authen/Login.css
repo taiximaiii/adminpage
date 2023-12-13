@@ -1,0 +1,86 @@
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-card {
+    display: flex;
+    max-width: 800px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .login-image {
+    flex: 1;
+    background-color: #007bff; /* Your background color for the image */
+  }
+  
+  .login-form {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-title {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .user-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .user-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .user-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-link {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .register-link p {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .register-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  

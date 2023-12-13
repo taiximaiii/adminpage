@@ -1,0 +1,23 @@
+/* User.css */
+
+/* Add your styling for the User component here */
+
+.btn-add{
+    margin-bottom: 10px;
+  }
+  
+  .ant-table {
+    margin-top: 16px;
+  }
+
+  .view-button,
+  .delete-button {
+    margin-right: 8px;
+  }
+  
+  .ant-modal-content {
+    border-radius: 8px;
+  }
+  
+  /* Add more styles as needed for your specific design */
+  
